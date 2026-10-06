@@ -1,16 +1,20 @@
 import pytest
-import main
+import my_calculator_module
 
-def test_main() -> None:
-    """Tests all functions in main."""
-    assert main.increment_by_one(3) == 4
+def test_my_calculator_module() -> None:
+    """Tests all functions in my_calculator_module."""
+    assert my_calculator_module.increment_by_one(3) == 4
+
+    assert my_calculator_module.decrement_by_one(3) == 2
 
 @pytest.mark.parametrize("a", 
     [
     ("5"),
     (None),
+    (False),
     ]
 )
-def test_main_type_error(a) -> None:
+def test_my_calculator_module_type_error(a) -> None:
     with pytest.raises(TypeError):
-        main.increment_by_one(a)
+        my_calculator_module.increment_by_one(a)
+        x = my_calculator_module.decrement_by_one(a)
