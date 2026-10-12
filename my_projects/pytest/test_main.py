@@ -1,8 +1,8 @@
 import pytest
 import calculator_module
 
-def test_my_calculator_module() -> None:
-    """Tests all functions in my_calculator_module."""
+def test_calculator_module() -> None:
+    """Tests basic functionality of calculator_module."""
     assert calculator_module.increment_by_one(3) == 4
 
     assert calculator_module.decrement_by_one(3) == 2
