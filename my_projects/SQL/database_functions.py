@@ -1,3 +1,5 @@
+from psycopg import rows
+
 import database_config 
 from contextlib import closing
 
@@ -28,7 +30,14 @@ def show_users():
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM my_table")
 
-            return cursor.fetchall()
+            columns = []
+            for column in cursor.description:
+                columns.append(column.name)
+            print(columns)
+
+            rows = cursor.fetchall()
+            for row in rows:
+                print(row)
 
 """with closing(database_config.get_connection()) as connection:
     with connection.cursor() as cursor:
