@@ -1,5 +1,3 @@
-from psycopg import rows
-
 import database_config 
 from contextlib import closing
 
@@ -27,17 +25,20 @@ def add_user(name, age):
 
 def show_users():
     with closing(database_config.get_connection()) as connection:
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT * FROM my_table")
+        with connection:
+            with connection.cursor() as cursor:
+                cursor.execute("SELECT * FROM my_table")
 
-            columns = []
-            for column in cursor.description:
-                columns.append(column.name)
-            print(columns)
+                columns = []
+                for column in cursor.description:
+                    columns.append(column.name)
+                print(columns)
 
-            rows = cursor.fetchall()
-            for row in rows:
-                print(row)
+                rows = cursor.fetchall()
+                for row in rows:
+                    print(row)
+
+                return rows
 
 """with closing(database_config.get_connection()) as connection:
     with connection.cursor() as cursor:

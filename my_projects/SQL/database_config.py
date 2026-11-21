@@ -9,5 +9,3 @@ def get_connection():
         password=YOUR_PASSWORD,
         host="localhost"
     )
-
-
